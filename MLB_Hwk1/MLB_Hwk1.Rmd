@@ -1,0 +1,49 @@
+---
+title: "Hwk1"
+author: "Troy"
+date: "10/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+library(plyr)
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(MASS)
+library(table1)
+
+# Read the dataset in
+d.in <- read.csv("bike_data.csv", header = TRUE)
+
+# Preprocess
+d.in <- d.in %>% mutate(datetime_f = mdy_hm(datetime)) %>%
+  mutate(year = as.factor(year(datetime_f))) %>%
+  mutate(weather = as.factor(weather)) %>%
+  filter(weather != "4")
+```
+
+
+```{r cars}
+summary(cars)
+```
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+
+

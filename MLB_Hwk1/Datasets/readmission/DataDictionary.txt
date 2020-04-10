@@ -1,0 +1,31 @@
+=## --------------------------------------------------------------------------------------------- ##
+## This document contains information about datasets pertaining to the 30-day readmission study
+## --------------------------------------------------------------------------------------------- ##
+
+
+File: encounter_info.csv
+------------------------
+
+1. Patient_ID: Unique ID given to a patient		
+2. Encounter_ID: Unique ID given to a hospital encounter per patient
+3. AdmissionStartDate : DTTM of encounter admission
+4. AdmissionEnd: DTTM of encounter discharge
+5. PatientGender: Male or Female
+6. PatientRace: White, African American, Asian, or Unknown
+7. PatientEncounterAge: Age of patient at time of encounter
+
+File: encounter_labs.csv
+-------------------------
+
+1. Encounter_ID:  Unique ID given to a hospital encounter per patient
+2. Lab_DTTM: Date and time of lab
+3-11: Various CBC laboratory values
+12-18: Various Metabolic laboratory values
+
+
+File: readmission_outcome.csv
+-------------------------------
+1. Encounter_ID:  Unique ID given to a hospital encounter per patient
+2. outcome: 1 if patient was readmitted within 30 days of encounter, 0 if not.
+
+

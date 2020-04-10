@@ -1,0 +1,138 @@
+---
+title: "lec 2"
+author: "Troy"
+date: "10/14/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+library(plyr)
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(MASS)
+library(caret)
+library(e1071)
+library(nnet)
+#read_Xtrain1 <- read.csv('~/Desktop/read_Xtrain1.csv')
+#read_Xtrain1$X <- NULL
+#read_ytrain1 <- read.csv('~/Desktop/read_ytrain1.csv')
+#read_Xtrain1$X <- NULL
+read_Xtest1 <- read.csv('~/Desktop/read_Xtest1.csv')
+read_Xtest1$X <- NULL
+read_ytest1 <- read.csv('~/Desktop/read_ytest1.csv')
+read_ytest1$X <- NULL
+read_train1 <- read.csv('~/Desktop/read_train1.csv')
+read_train1$X <- NULL
+read_test1 <- read.csv('~/Desktop/read_test1.csv')
+read_test1$X <- NULL
+read <- read.csv("~/Desktop/read.csv")
+read$X <- NULL
+```
+
+```{r cars}
+nb <- naiveBayes(outcome~., data=read)
+summary(nb)
+```
+```{r cars}
+pred1 <- predict(nb, read) %>%
+  as.data.frame() %>%
+  mutate(prediction = if_else(0 < 1, 0, 1)) %>%
+  pull(prediction)
+table1 <- table(pred1, read$outcome)
+```
+
+```{r cars}
+nb_default <- naiveBayes(outcome~PatientEncounterAge+PatientGender+PatientRace, data=read)
+summary(nb_default)
+
+
+```
+
+
+```{r cars}
+nb_default <- naiveBayes(outcome~PatientEncounterAge+PatientGender+PatientRace, data=read)
+summary(nb_default)
+
+
+```
+
+
+```{r cars}
+nb_default <- naiveBayes(outcome~PatientEncounterAge+PatientGender+PatientRace, data=read)
+summary(nb_default)
+
+
+```
+
+
+```{r cars}
+nb_default <- naiveBayes(outcome~PatientEncounterAge+PatientGender+PatientRace, data=read)
+summary(nb_default)
+
+
+```
+
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+pred1 <- predict(nb_default, read_Xtest1, type = "raw") %>%
+  as.data.frame() %>%
+  mutate(prediction = if_else(0 < 1, 0, 1)) %>%
+  pull(prediction)
+
+nb_table <- table(pred1, read_ytest1$outcome)
+
+accuracy_test_nb <- sum(diag(nb_table)) / sum(nb_table)
+
+list('predict matrix' =nb_table, 'accuracy' = accuracy_test_nb)
+```
+```{r}
+pred_prob <- predict(nb_default, read_test1, type = "prob")
+```
+
+```{r}
+library(pROC)
+roc1 <- roc(read_ytest1$outcome, pred1)
+roc(read_ytest1, pred1$)
+```
+
+```{r}
+ci.auc(read_ytest1$outcome, pred1)
+```
+
+```{r}
+# Take an overlook of Sales~Radio simple regression
+ci(roc1)
+```
+
+
+
+```{r}
+# Take an overlook of Sales~Radio simple regression
+m.lm32 <- lm(Sales ~ Radio,data = d.in2)
+summary(m.lm32)
+
+```
+
+
+
+```{r}
+# Take an overlook of Sales~Radio simple regression
+m.lm32 <- lm(Sales ~ Radio,data = d.in2)
+summary(m.lm32)
+
+```
+
+```{r}
+# Take an overlook of Sales~Radio simple regression
+m.lm32 <- lm(Sales ~ Radio,data = d.in2)
+summary(m.lm32)
+
+```
+
